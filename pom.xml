@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.abctechnologies</groupId>
+    <artifactId>corporate-website</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <name>ABC Technologies Corporate Website</name>
+    <description>DevOps Assignment 2 corporate website deployment project</description>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>validate-website-files</id>
+                        <phase>package</phase>
+                        <configuration>
+                            <target>
+                                <echo message="Validating ABC Technologies website files..." />
+                                <available file="website/index.html" property="index.exists" />
+                                <available file="website/about.html" property="about.exists" />
+                                <available file="website/services.html" property="services.exists" />
+                                <available file="website/careers.html" property="careers.exists" />
+                                <available file="website/contact.html" property="contact.exists" />
+                                <available file="website/gallery.html" property="gallery.exists" />
+                                <available file="website/css/style.css" property="css.exists" />
+                                <available file="website/js/script.js" property="js.exists" />
+                                <available file="website/images" type="dir" property="images.exists" />
+                                <fail unless="index.exists" message="Missing website/index.html" />
+                                <fail unless="about.exists" message="Missing website/about.html" />
+                                <fail unless="services.exists" message="Missing website/services.html" />
+                                <fail unless="careers.exists" message="Missing website/careers.html" />
+                                <fail unless="contact.exists" message="Missing website/contact.html" />
+                                <fail unless="gallery.exists" message="Missing website/gallery.html" />
+                                <fail unless="css.exists" message="Missing website/css/style.css" />
+                                <fail unless="js.exists" message="Missing website/js/script.js" />
+                                <fail unless="images.exists" message="Missing website/images directory" />
+                                <echo message="All required website files are available." />
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
