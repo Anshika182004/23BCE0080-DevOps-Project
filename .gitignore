@@ -6,3 +6,5 @@ target/
 Thumbs.db
 
 .vscode/
+
+*.tar
